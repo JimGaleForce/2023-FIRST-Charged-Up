@@ -47,13 +47,18 @@ public class Robot extends TimedRobot {
   }
 
   @Override
+  public void autonomousInit() {
+    m_auto.init();
+  }
+
+  @Override
   public void autonomousPeriodic() {
     m_auto.periodic();
   }
 
   @Override
   public void teleopPeriodic() {
-    m_drive.arcadeDrive(-m_controller.getRawAxis(1), -0.4*m_controller.getRawAxis(0));
+    m_drive.arcadeDrive(-m_controller.getRawAxis(1), 0.7*m_controller.getRawAxis(0));
   // System.out.println(getDistance());
   // if (getDistance() > 20) {
   //   m_drive.arcadeDrive(-0.5, 0);

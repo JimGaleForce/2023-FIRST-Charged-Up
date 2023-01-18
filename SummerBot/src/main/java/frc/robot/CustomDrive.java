@@ -23,8 +23,8 @@ public class CustomDrive {
         lat = Math.copySign(lat*lat, lat);
         rot = Math.copySign(rot*rot, rot);
 
-        double leftSpeed = lat - rot;
-        double rightSpeed = lat + rot;
+        double leftSpeed = lat + rot;
+        double rightSpeed = lat - rot;
         double k_normalization = Math.max(1, Math.max(Math.abs(leftSpeed), Math.abs(rightSpeed)));
 
         leftSpeed /= k_normalization;
