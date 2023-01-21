@@ -39,11 +39,14 @@ public class customAuto {
             m_drive.arcadeDrive(0, 0);
         } else if (timer < 280) {
             m_drive.arcadeDrive(0.5, 0);
-        } else if (newGyro.getAngle() < -5) {
+        } else if (newGyro.getAngle() < -5 && timer == 281) {
             m_drive.arcadeDrive(0, -0.5);
         } else if (timer < 500) {
             m_drive.arcadeDrive(0.5, 0);
-        } else {
+        } else if (newGyro.getAngle() < 5){
+            m_drive.arcadeDrive(0, -.5);
+        }
+        else {
             m_drive.arcadeDrive(0, 0);
         }
     }

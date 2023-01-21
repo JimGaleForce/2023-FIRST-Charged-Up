@@ -58,7 +58,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    m_drive.arcadeDrive(-m_controller.getRawAxis(1), 0.7*m_controller.getRawAxis(0));
+    m_drive.arcadeDrive(m_controller.getRawAxis(1),.7*m_controller.getRawAxis(0));
   // System.out.println(getDistance());
   // if (getDistance() > 20) {
   //   m_drive.arcadeDrive(-0.5, 0);
@@ -68,6 +68,6 @@ public class Robot extends TimedRobot {
   }
 
   public double getDistance() {
-    return m_counter.getPeriod() * 100000 / 2.54;
+    return m_counter.getPeriod() * 10000000 / 2.54;
   }
 }
