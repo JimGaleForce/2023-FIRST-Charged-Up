@@ -2,7 +2,7 @@ package frc.robot.auto;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import frc.robot.CustomDrive;
 
-public class customAuto {
+public class customAuto implements AutoRoutine {
 
     CustomDrive m_drive;
     int timer;

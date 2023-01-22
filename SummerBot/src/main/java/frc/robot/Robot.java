@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
+import frc.robot.auto.AutoRoutine;
 import frc.robot.auto.customAuto;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.Joystick;
@@ -21,7 +22,7 @@ public class Robot extends TimedRobot {
 
   Counter m_counter;
 
-  customAuto m_auto;
+  AutoRoutine m_auto;
 
   @Override
   public void robotInit() {
@@ -68,6 +69,6 @@ public class Robot extends TimedRobot {
   }
 
   public double getDistance() {
-    return m_counter.getPeriod() * 10000000 / 2.54;
+    return m_counter.getPeriod() * 100000 / 2.54;
   }
 }
