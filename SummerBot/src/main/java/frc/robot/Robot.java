@@ -11,6 +11,15 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.ADIS16448_IMU;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.CvSink;
+import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.CvSource;
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
 
 public class Robot extends TimedRobot {
   VictorSPX m_frontLeft, m_rearLeft;
@@ -22,7 +31,10 @@ public class Robot extends TimedRobot {
 
   Counter m_counter;
 
-  ConeConeCone m_auto;
+  AutoRoutine m_auto;
+
+  // CameraServer m_camera;
+  Thread m_visionThread;
 
   @Override
   public void robotInit() {
@@ -45,6 +57,35 @@ public class Robot extends TimedRobot {
     m_counter.reset();
 
     m_auto = new ConeConeCone(m_drive);
+
+    // CameraServer.startAutomaticCapture("null", 0);
+
+    m_visionThread = new Thread(
+      () -> {
+        UsbCamera camera = CameraServer.startAutomaticCapture();
+        camera.setResolution(640, 480);
+        CvSink cvsink = CameraServer.getVideo();
+        CvSource outputstream = CameraServer.putVideo("Science", 640, 480);
+        Mat mat = new Mat();
+
+        while (!Thread.interrupted()) {
+          if (cvsink.grabFrame(mat) == 0) {
+            System.out.println("Stream Error");
+            continue;
+          }
+          
+          System.out.println(" " + mat.width() + mat.height());
+          // Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400), new Scalar(0, 255, 255), -5);
+          Imgproc.cvtColor(mat, mat, Imgproc.COLOR_BGR2HSV);
+          Imgproc.medianBlur(mat, mat, 5);
+          //Core.inRange(mat, new Scalar(30, 100, 100), new Scalar(80, 200, 200), mat);
+          outputstream.putFrame(mat);
+        }
+      }
+    );
+    m_visionThread.setDaemon(true);
+    m_visionThread.start();
+
   }
 
   @Override
@@ -69,6 +110,6 @@ public class Robot extends TimedRobot {
   }
 
   public double getDistance() {
-    return m_counter.getPeriod() * 10000000 / 2.54;
+    return m_counter.getPeriod() * 100000 / 2.54;
   }
 }
