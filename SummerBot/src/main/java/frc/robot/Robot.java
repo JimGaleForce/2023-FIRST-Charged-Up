@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
+import frc.robot.auto.ConeConeCone;
 import frc.robot.auto.customAuto;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.Joystick;
@@ -21,7 +22,7 @@ public class Robot extends TimedRobot {
 
   Counter m_counter;
 
-  customAuto m_auto;
+  ConeConeCone m_auto;
 
   @Override
   public void robotInit() {
@@ -43,7 +44,7 @@ public class Robot extends TimedRobot {
     m_counter.setSemiPeriodMode(true);
     m_counter.reset();
 
-    m_auto = new customAuto(m_drive);
+    m_auto = new ConeConeCone(m_drive);
   }
 
   @Override
@@ -58,7 +59,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    m_drive.arcadeDrive(m_controller.getRawAxis(1),.7*m_controller.getRawAxis(0));
+    m_drive.arcadeDrive(-m_controller.getRawAxis(1), 0.6*m_controller.getRawAxis(0));
   // System.out.println(getDistance());
   // if (getDistance() > 20) {
   //   m_drive.arcadeDrive(-0.5, 0);
