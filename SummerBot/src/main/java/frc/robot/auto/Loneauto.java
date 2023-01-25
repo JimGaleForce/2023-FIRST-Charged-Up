@@ -16,17 +16,17 @@ public class Loneauto {
     }
     public void periodic(){
         timer++;
-        if(timer < 50){
+        if (timer < 50) {
             m_drive.arcadeDrive(0.5,0);
-        }else if(timer < 200 && m_gyro.getAngle() < 270){
+        } else if (timer < 200 && m_gyro.getAngle() < 270) {
             m_drive.arcadeDrive(0,1);
-        }else if(timer < 250){
+        } else if (timer < 250) {
             m_drive.arcadeDrive(1,0);
-        }else if(timer < 350 && m_gyro.getAngle() > 0){
+        } else if (timer < 350 && m_gyro.getAngle() > 0) {
             m_drive.arcadeDrive(0,-1);
-        }else if(timer < 450){
+        } else if(timer < 450) {
             m_drive.arcadeDrive(1,0);
-        }else{
+        } else {
             m_drive.arcadeDrive(0,0);
         }
 }
