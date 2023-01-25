@@ -73,7 +73,7 @@ public class Robot extends TimedRobot {
             continue;
           }
           
-          System.out.println(" " + mat.width() + mat.height());
+          // System.out.println(" " + mat.width() + mat.height());
           // Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400), new Scalar(0, 255, 255), -5);
           Imgproc.cvtColor(mat, mat, Imgproc.COLOR_BGR2HSV);
           Imgproc.medianBlur(mat, mat, 5);
@@ -100,6 +100,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     m_drive.arcadeDrive(-m_controller.getRawAxis(1), 0.6*m_controller.getRawAxis(0));
+    
   // System.out.println(getDistance());
   // if (getDistance() > 20) {
   //   m_drive.arcadeDrive(-0.5, 0);

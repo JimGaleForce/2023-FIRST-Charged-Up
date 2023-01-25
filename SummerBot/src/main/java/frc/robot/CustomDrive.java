@@ -34,6 +34,8 @@ public class CustomDrive extends RobotDriveBase{
 
         m_left.set(ControlMode.PercentOutput, leftSpeed);
         m_right.set(rightSpeed);
+
+        feedWatchdog();
     }
 
     public void stopMotor() {
