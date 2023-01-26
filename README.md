@@ -9,7 +9,7 @@
 * [Competition 2 - Bonney Lake (F 3/17 to U 3/19)](https://firstwa.org/first-robotics-competition/game-and-season/bonney-lake-frc-event/) (links to FIRST WA)
 * [District Championship - Eastern Washington University (W 4/5 to S 4/8)](https://firstwa.org/first-robotics-competition/game-and-season/pnw-district-championship-frc-event/) (links to FIRST WA)
 
-![Tentative Meeting Schedule, normally T 3-6, R 3-6, S 10-4](docs\tentative_robotics_schedule.png)
+![Tentative Meeting Schedule, normally T 3-6, R 3-6, S 10-4](/docs/tentative_robotics_schedule.png)
 
 ### Typical Gantt Chart:
  * **Help with designing the robot (Kickoff - end of W1)**  
@@ -50,5 +50,5 @@
 180 = Down  
 270 = Left
 
-![FIRST Charged Up Logo](docs\transparentfrc23.png)
-![FRC 4681 RoboCat](docs\transparentrobocat.png)
+![FIRST Charged Up Logo](/docs/transparentfrc23.png)
+![FRC 4681 RoboCat](/docs/transparentrobocat.png)
