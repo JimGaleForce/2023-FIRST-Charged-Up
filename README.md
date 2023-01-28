@@ -1,14 +1,19 @@
-### FRC 4681 - 2023 Repository
+## FRC 4681 - 2023 Repository
+
+![FIRST Charged Up Logo](/docs/transparentfrc23_144.png)
 
 ### Helpful Links
-* [FRC Control System Docs](https://docs.wpilib.org/en/stable/index.html)
-* [WPILib Java API Docs](https://github.wpilib.org/allwpilib/docs/release/java/index.html)
+* [FRC Control System Docs](https://docs.wpilib.org/en/stable/index.html)  
+* [WPILib Java API Docs](https://github.wpilib.org/allwpilib/docs/release/java/index.html)  
 * [2022 Repository](https://github.com/amhsrobotics4681/2022-Folder)
 
-### Season Information
-Our meeting dates are tentatively T 3-6, R 3-5, S 10-2. Please refer to Canvas for updated information.
+- [Competition 1 - Glacier Peak (F 3/3 to U 3/5)](https://firstwa.org/first-robotics-competition/game-and-season/glacier-peak-frc-event/) (links to FIRST WA)
+- [Competition 2 - Bonney Lake (F 3/17 to U 3/19)](https://firstwa.org/first-robotics-competition/game-and-season/bonney-lake-frc-event/) (links to FIRST WA)
+- [District Championship - Eastern Washington University (W 4/5 to S 4/8)](https://firstwa.org/first-robotics-competition/game-and-season/pnw-district-championship-frc-event/) (links to FIRST WA)
 
-### Gantt Chart:
+![Tentative Meeting Schedule, normally T 3-6, R 3-6, S 10-4](/docs/tentative_robotics_schedule.png)
+
+### Typical Gantt Chart:
  * **Help with designing the robot (Kickoff - end of W1)**  
  You can't code a robot that doesn't exist!
  * **Boilerplate Code (W1 - W2)**  
@@ -18,12 +23,9 @@ Our meeting dates are tentatively T 3-6, R 3-5, S 10-2. Please refer to Canvas f
  * **Testing robot mechanisms (W2 - W6)**  
  As various parts of the robot get finished, try and test things with code. This does not require an electrical board, just put the base on 2x4s and make sure wheels spin, or hook up the intake, etc. This is a bit tougher, and requires good time management and communication.
  * **Writing autonomous routines (W2 - W8)**  
- This should be split between programmers, and programmers who build field elements. Everyone can collaborate, of course, the more ideas are better. Styling our autonomous is going to be a challenge.
+ This should be split between programmers, and programmers who build field elements. Everyone can collaborate and contribute, of course. Having more ideas is better. Styling our autonomous is going to be a challenge.
  * **Testing the robot (W6 - W8)**  
  Yes, this implies the robot is done by week 6, but hopefully it is!
- 
-* **Competition 1 - Glacier Peak, F 3/3 to U 3/5**
-* **Competition 2 - Bonney Lake, F 3/17 to U 3/19**
 
 ### Logitech Gaming Controller F310 - Button Layout:
 
@@ -50,3 +52,4 @@ Our meeting dates are tentatively T 3-6, R 3-5, S 10-2. Please refer to Canvas f
 180 = Down  
 270 = Left
 
+![FRC 4681 RoboCat](/docs/transparentrobocat_144.png)
