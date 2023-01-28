@@ -1,0 +1,24 @@
+Command, ParallelCommandGroup, SequentialCommandGroup, CommandScheduler:
+The Command class is the base class for all commands in the FRC (FIRST Robotics Competition) Java library. It is used to define a specific action that a robot should perform, such as moving a motor or deploying a mechanism.
+
+The ParallelCommandGroup class is used to run multiple commands at the same time. This is useful when you want to perform multiple actions simultaneously, such as moving multiple motors or deploying multiple mechanisms.
+
+The SequentialCommandGroup class is used to run multiple commands in sequence. This is useful when you want to perform a series of actions in order, such as deploying a mechanism, waiting for it to fully extend, and then deploying another mechanism.
+
+The CommandScheduler class is used to manage the execution of commands. It is responsible for running commands in parallel or in sequence, as well as ensuring that commands are not interrupted by other commands.
+
+In FRC code, these classes are used to create a program that defines the actions that a robot should perform during a match. The program is typically divided into a set of commands, which are organized into groups, such as a parallel command group or a sequential command group, depending on the desired behavior. The CommandScheduler is then used to run the command groups and manage the execution of the commands.
+
+
+
+Gyro:
+The ADIS16470_IMU has a built-in yaw angle measurement that is relative to the initial position when the sensor was powered on or when the reset() method was called. In order to obtain an absolute yaw angle measurement, you would need to combine the relative yaw angle measurement from the sensor with an external reference, such as a compass or GPS.
+
+One way to achieve this is to use the getAngle() method to obtain the relative yaw angle, and then use a compass or GPS sensor to obtain the absolute yaw angle. Then you can use the difference between the two angles to calculate an offset value, which you can use to correct the relative yaw angle measurement. This offset value can be stored in a variable or in a file, so that you can use it even after the sensor is reset.
+
+Another way to achieve this, is to use the getAngleZ() method which returns the angle in degrees about the Z axis, without resetting the angle. This is a filtered angle, meaning that it is processed by the sensor's internal algorithm and is less affected by noise than the raw data.
+
+It's worth noting that, the ADIS16470_IMU is a high-performance sensor and is sensitive to external factors such as magnetic interference, vibration, and temperature changes, which can affect the accuracy of the yaw angle measurement. Therefore, you should consider implementing a Kalman filter or a complementary filter to fuse the data from multiple sensors, such as IMU and GPS, in order to improve the overall accuracy of the angle measurement.
+
+
+

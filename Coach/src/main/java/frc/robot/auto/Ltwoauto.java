@@ -2,13 +2,13 @@ package frc.robot.auto;
 import frc.robot.CustomDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 
-public class LTwoAuto {
+public class Ltwoauto {
     CustomDrive m_drive;
     int timer;
     Gyro m_gyro;
 
 
-    public LTwoAuto(CustomDrive drive){
+    public Ltwoauto(CustomDrive drive){
         m_drive = drive;
     }
     public void init(){
@@ -16,24 +16,22 @@ public class LTwoAuto {
     }
     public void periodic(){
         timer++;
-        if (timer < 150) {
+        if(timer < 150){
             m_drive.arcadeDrive(1,0);
-        } else if (timer == 151 && m_gyro.getAngle() < 175) {
+        }else if(timer > 150 && m_gyro.getAngle() < 180){
            m_drive.arcadeDrive(0,1);
-            timer = 150;
-        } else if (timer < 300) {
+        }else if(timer < 400){
             m_drive.arcadeDrive(1,0);
-        } else if (timer == 301 && m_gyro.getAngle() < 267) {
+        }else if(timer > 400 && m_gyro.getAngle() < 270){
             m_drive.arcadeDrive(0,1);
-            timer = 300;
-        } else if (timer < 350) {
+        }else if(timer < 550){
+            
             m_drive.arcadeDrive(1,0);
-        } else if (timer == 351 && m_gyro.getAngle() < 356) {
+        }else if(timer > 550 && m_gyro.getAngle() < 360){
             m_drive.arcadeDrive(0,1);
-            timer = 350;
-        } else if (timer < 425) {
+        }else if(timer < 625){
             m_drive.arcadeDrive(0.5,0);
-        } else {
+        }else{
             m_drive.arcadeDrive(0,0);
         }
     }
