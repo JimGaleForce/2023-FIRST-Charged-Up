@@ -36,9 +36,12 @@ public class HybridCone implements AutoRoutine {
           // new TurnCmd(this.c_Drive, this.c_Gyro, -86,2000),
           // new DriveTimeCmd(this.c_Drive, 1,0,500),
           // new TurnCmd(this.c_Drive, this.c_Gyro, 86,2000),
-          new DriveTimeCmd(this.c_Drive, 0.6,0,4680),
-          new DriveTimeCmd(this.c_Drive, -0.4,0,200),
-          new DriveTimeCmd(this.c_Drive, 0,0,0)
+
+          // testing engaging
+          new DriveTimeCmd(this.c_Drive, 0.6,0,3985),
+          new DriveTimeCmd(this.c_Drive, -0.5,0,350),
+          new DriveTimeCmd(this.c_Drive, 0,0,0),
+          new BrakeCmd(this.c_Drive, 0,0,0)
         ));
 
     // Cancel any previous commands, in case there was a false start.
