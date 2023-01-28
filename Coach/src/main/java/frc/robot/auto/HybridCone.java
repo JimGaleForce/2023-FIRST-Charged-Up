@@ -27,16 +27,17 @@ public class HybridCone implements AutoRoutine {
     // initiated.
     Command m_sequentialCommands = new SequentialCommandGroup(
         new SequentialCommandGroup(
-          new DriveTimeCmd(this.c_Drive, -0.5,0,100),
-          new DriveTimeCmd(this.c_Drive, 0.7,0,1850),
-          new TurnCmd(this.c_Drive, this.c_Gyro, 35,1500),
-          new DriveTimeCmd(this.c_Drive, 0,0,1000),
-          new TurnCmd(this.c_Drive, this.c_Gyro, 145,5000),
-          new DriveTimeCmd(this.c_Drive, 0.7,0,1800),
-          new TurnCmd(this.c_Drive, this.c_Gyro, -90,2000),
-          new DriveTimeCmd(this.c_Drive, 0.9,0,500),
-          new TurnCmd(this.c_Drive, this.c_Gyro, 90,2000),
-          new DriveTimeCmd(this.c_Drive, 0.9,0,500),
+          // new DriveTimeCmd(this.c_Drive, -0.5,0,100),
+          // new DriveTimeCmd(this.c_Drive, 0.7,0,3050),
+          // new TurnCmd(this.c_Drive, this.c_Gyro, 30,1500),
+          // new DriveTimeCmd(this.c_Drive, 0,0,500),
+          // new TurnCmd(this.c_Drive, this.c_Gyro, 145,5000),
+          // new DriveTimeCmd(this.c_Drive, 0.7,0,3000),
+          // new TurnCmd(this.c_Drive, this.c_Gyro, -86,2000),
+          // new DriveTimeCmd(this.c_Drive, 1,0,500),
+          // new TurnCmd(this.c_Drive, this.c_Gyro, 86,2000),
+          new DriveTimeCmd(this.c_Drive, 0.6,0,4680),
+          new DriveTimeCmd(this.c_Drive, -0.4,0,200),
           new DriveTimeCmd(this.c_Drive, 0,0,0)
         ));
 
