@@ -52,26 +52,26 @@ public class BradyAuto {
             if (y>7){
                 m_drive.arcadeDrive(4,0);
             }
-            // if (timer < 75) {
-            //     m_drive.arcadeDrive(.4, 0);
-            // }
-            // else if (timer<300){ 
-            //     m_drive.arcadeDrive(0,.6);
+             if (timer < 75) {
+                 m_drive.arcadeDrive(.4, 0);
+             }
+             else if (timer<300){ 
+                 m_drive.arcadeDrive(0,.6);
 
-            //      if(gyro.getAngle() <= -74){
-            //         m_drive.arcadeDrive(0.5,0);
-            //     }
+                if(gyro.getAngle() <= -74){
+                   m_drive.arcadeDrive(0.5,0);
+               }
                 
-            // }
-            // else if(timer < 400){
-            //     m_drive.arcadeDrive(0,-.6);
+             }
+             else if(timer < 400){
+                 m_drive.arcadeDrive(0,-.6);
 
-            //     if(gyro.getAngle() >= 35){
-            //         m_drive.arcadeDrive(0.5,0);
-            //     }
-            // }
-            // else {
-            //     m_drive.arcadeDrive(0, 0);
-            // }
+                 if(gyro.getAngle() >= 35){
+                     m_drive.arcadeDrive(0.5,0);
+                }
+             }
+             else {
+                 m_drive.arcadeDrive(0, 0);
+             }
         }
 }

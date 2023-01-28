@@ -55,7 +55,7 @@ public class Robot extends TimedRobot {
     m_counter.setSemiPeriodMode(true);
     m_counter.reset();
 
-    m_auto = new ConeConeCone(m_drive);
+    m_auto = new Something(m_drive);
 
     // CameraServer.startAutomaticCapture("null", 0);
 
