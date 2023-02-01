@@ -101,11 +101,13 @@ public class Turn0 extends CommandBase {
       this.isDone = -this.c_Gyro.getAngle() <= this.degrees;
     }
     if(x==0 && area<69){
+      c_Drive.arcadeDrive(distance,0);
       //c_Drive.arcadeDrive(this.distance,0);
     }
-    else if(x==0 && area<=69){
+    else if(x==0 && area>=69){
       c_Drive.arcadeDrive(0,0);
     }
+
     this.isDone = this.isDone || System.currentTimeMillis() >= this.startTime + this.milliseconds;
     if (!this.isDone) {
       c_Drive.arcadeDrive(0, this.rot);
