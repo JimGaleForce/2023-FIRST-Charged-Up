@@ -5,7 +5,9 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
-import frc.robot.auto.*;
+import frc.robot.auto.AutoRoutine;
+import frc.robot.auto.ConeConeCone;
+import frc.robot.auto.BradyAuto;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Counter;
@@ -23,17 +25,19 @@ import org.opencv.imgproc.Imgproc;
 public class Robot extends TimedRobot {
   VictorSPX m_frontLeft, m_rearLeft;
   PWMVictorSPX m_frontRight, m_rearRight;
-  
   MotorControllerGroup m_right;
   CustomDrive m_drive;
   Joystick m_controller;
 
   Counter m_counter;
 
+
   AutoRoutine m_auto;
 
   // CameraServer m_camera;
   Thread m_visionThread;
+
+  //BradyAuto m_auto;
 
   @Override
   public void robotInit() {
@@ -55,10 +59,7 @@ public class Robot extends TimedRobot {
     m_counter.setSemiPeriodMode(true);
     m_counter.reset();
 
-    m_auto = new ConeConeCone(m_drive);
-
     // CameraServer.startAutomaticCapture("null", 0);
-
     m_visionThread = new Thread(
       () -> {
         UsbCamera camera = CameraServer.startAutomaticCapture();
@@ -85,6 +86,9 @@ public class Robot extends TimedRobot {
     m_visionThread.setDaemon(true);
     m_visionThread.start();
 
+
+    m_auto = new ConeConeCone (m_drive);
+//>>>>>>> Stashed changes
   }
 
   @Override
