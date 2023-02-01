@@ -35,6 +35,9 @@ public class Robot extends TimedRobot {
   // CameraServer m_camera;
   Thread m_visionThread;
 
+  /**
+   * 
+   */
   @Override
   public void robotInit() {
     m_frontLeft = new VictorSPX(0);
@@ -55,7 +58,7 @@ public class Robot extends TimedRobot {
     m_counter.setSemiPeriodMode(true);
     m_counter.reset();
 
-    m_auto = new HybridCone(m_drive);
+    m_auto = new aidato(m_drive);
 
     // CameraServer.startAutomaticCapture("null", 0);
 
