@@ -15,7 +15,7 @@ public class Ltwoauto {
         timer = 0;
     }
     public void periodic(){
-        timer++;
+     //   timer++;
         if(timer < 150){
             m_drive.arcadeDrive(1,0);
         }else if(timer > 150 && m_gyro.getAngle() < 180){

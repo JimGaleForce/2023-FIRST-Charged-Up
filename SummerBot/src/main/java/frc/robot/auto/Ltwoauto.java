@@ -7,14 +7,15 @@ public class Ltwoauto {
     int timer;
     Gyro m_gyro;
 
-
-    public Ltwoauto(CustomDrive drive){
+    public Ltwoauto(CustomDrive drive) {
         m_drive = drive;
     }
-    public void init(){
+    
+    public void init() {
         timer = 0;
     }
-    public void periodic(){
+    
+    public void periodic() {
         timer++;
         if (timer < 150) {
             m_drive.arcadeDrive(1,0);
