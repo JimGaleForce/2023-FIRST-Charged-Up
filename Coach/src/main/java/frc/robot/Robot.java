@@ -30,7 +30,7 @@ public class Robot extends TimedRobot {
 
   Counter m_counter;
 
-  AutoRoutine m_auto;
+  HybridCone m_auto;
 
   // CameraServer m_camera;
   Thread m_visionThread;
