@@ -12,7 +12,7 @@ public class DriveDistanceCmd extends CommandBase {
 
   // Constants
   private static final double WHEEL_DIAMETER = 6.0; // inches
-  private static final double RPM = 300.0; // assuming 100% power is 1000 RPM
+  private static final double RPM = 100.0; // assuming 100% power is 1000 RPM
   private static final double CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI; // inches
   private static final double INCHES_PER_MINUTE = RPM * CIRCUMFERENCE; // inches per minute
   
