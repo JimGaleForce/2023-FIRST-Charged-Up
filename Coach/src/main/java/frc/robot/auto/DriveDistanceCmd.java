@@ -215,7 +215,6 @@ public class DriveDistanceCmd extends CommandBase {
   @Override
   public void execute() {
     long currentTime = System.currentTimeMillis();
-    this.isDone = (currentTime >= (this.startTime + this.milliseconds)) || (currentTime >= (this.startTime + this.timeoutInMilliseconds));
     this.isDone = currentTime >= this.startTime + this.milliseconds || currentTime > this.startTime + this.timeoutInMilliseconds;
     if (!this.isDone) {
       double currentSpeed = getSpeedFrom(currentTime);
