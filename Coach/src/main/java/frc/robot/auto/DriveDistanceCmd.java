@@ -201,7 +201,7 @@ public class DriveDistanceCmd extends CommandBase {
    */
   @Override
   public void initialize() {
-    c_Drive.arcadeDrive(this.topSpeed, 0);
+    c_Drive.arcadeDrive(0, 0);
     this.startTime = System.currentTimeMillis();
   }
 
@@ -216,9 +216,14 @@ public class DriveDistanceCmd extends CommandBase {
   public void execute() {
     long currentTime = System.currentTimeMillis();
     this.isDone = (currentTime >= (this.startTime + this.milliseconds)) || (currentTime >= (this.startTime + this.timeoutInMilliseconds));
+    this.isDone = currentTime >= this.startTime + this.milliseconds || currentTime > this.startTime + this.timeoutInMilliseconds;
     if (!this.isDone) {
       double currentSpeed = getSpeedFrom(currentTime);
       c_Drive.arcadeDrive(currentSpeed, 0);
+    } 
+    else 
+    {
+      c_Drive.arcadeDrive(0,0);
     }
   }
 
