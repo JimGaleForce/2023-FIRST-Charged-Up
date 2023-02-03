@@ -1,6 +1,7 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.drive.RobotDriveBase;
@@ -15,7 +16,9 @@ public class CustomDrive extends RobotDriveBase{
         this.m_left = m_left;
         this.m_right = m_right;
     }
-
+    public void coast(){
+        m_left.setNeutralMode(NeutralMode.Coast);
+    }
     public void arcadeDrive(double lat, double rot) {
         if (Math.abs(lat) < k_defaultDeadband)
             lat = 0;
@@ -39,6 +42,13 @@ public class CustomDrive extends RobotDriveBase{
     }
 
     public void stopMotor() {
+        m_left.set(ControlMode.PercentOutput, 0);
+        m_right.set(0);
+    }
+
+    public void Brake() {
+        m_left.setNeutralMode(NeutralMode.Brake);
+        
         m_left.set(ControlMode.PercentOutput, 0);
         m_right.set(0);
     }

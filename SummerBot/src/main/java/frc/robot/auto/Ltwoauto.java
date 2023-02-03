@@ -2,19 +2,20 @@ package frc.robot.auto;
 import frc.robot.CustomDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 
-public class LTwoAuto {
+public class Ltwoauto {
     CustomDrive m_drive;
     int timer;
     Gyro m_gyro;
 
-
-    public LTwoAuto(CustomDrive drive){
+    public Ltwoauto(CustomDrive drive) {
         m_drive = drive;
     }
-    public void init(){
+    
+    public void init() {
         timer = 0;
     }
-    public void periodic(){
+    
+    public void periodic() {
         timer++;
         if (timer < 150) {
             m_drive.arcadeDrive(1,0);
