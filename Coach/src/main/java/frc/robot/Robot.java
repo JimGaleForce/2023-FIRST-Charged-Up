@@ -59,7 +59,10 @@ public class Robot extends TimedRobot {
     m_counter.reset();
 
     m_auto = new aidato(m_drive);
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
     // CameraServer.startAutomaticCapture("null", 0);
 
