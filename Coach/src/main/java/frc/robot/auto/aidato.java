@@ -33,23 +33,17 @@ public class aidato implements AutoRoutine {
 
 
 
-              new DriveTimeCmd(this.c_Drive, 0.5, 0, 1000);
+              new DriveTimeCmd(this.c_Drive, 0.5, 0, 1000),
 
-              new TurnCmd(this.c_Drive, this.c_Gyro, 90, 4000);
+              new TurnCmd(this.c_Drive, this.c_Gyro, 90, 4000),
   
-              new DriveTimeCmd(this.c_Drive, 0.5 , 0, 2000);
+              new DriveTimeCmd(this.c_Drive, 0.5, 0, 2000),
 
-              new TurnCmd(this.c_Drive, this.c_Gyro, -90, 4000);
+              new TurnCmd(this.c_Drive, this.c_Gyro, -90, 4000),
 
-              new DriveTimeCmd(this.c_Drive, 0.7, 0, 2000);
-
-              new DriveTimeCmd(this.c_Drive, 0., 0, 3000);
+              new DriveTimeCmd(this.c_Drive, 0.6, 0, 2000),
   
-              new DriveTimeCmd(this.c_Drive, 0, 0, 0);
-
-
-
- 
+              new DriveTimeCmd(this.c_Drive, 0, 0, 0)
 
           ));
   
