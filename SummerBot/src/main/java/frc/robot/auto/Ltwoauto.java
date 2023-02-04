@@ -2,7 +2,7 @@ package frc.robot.auto;
 import frc.robot.CustomDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 
-public class Ltwoauto {
+public class Ltwoauto implements AutoRoutine {
     CustomDrive m_drive;
     int timer;
     Gyro m_gyro;

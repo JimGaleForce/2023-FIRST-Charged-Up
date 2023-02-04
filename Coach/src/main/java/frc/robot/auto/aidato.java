@@ -25,13 +25,8 @@ public class aidato implements AutoRoutine {
 
       Command m_sequentialCommands = new SequentialCommandGroup(
           new SequentialCommandGroup(
-          
-          /*new DriveDistanceCmd(c_Drive, 0.5, 4, 0, 3000);
-          new DriveDistanceCmd(c_Drive, 0, 0, 0, 0);*/
-
-
-
-
+        
+              new DriveDistanceCmd(this.c_Drive, 0.5, 4, 0, 4000)
 
               new DriveTimeCmd(this.c_Drive, 0.5, 0, 1000),
 

@@ -11,6 +11,10 @@
 - [Competition 2 - Bonney Lake (F 3/17 to U 3/19)](https://firstwa.org/first-robotics-competition/game-and-season/bonney-lake-frc-event/) (links to FIRST WA)
 - [District Championship - Eastern Washington University (W 4/5 to S 4/8)](https://firstwa.org/first-robotics-competition/game-and-season/pnw-district-championship-frc-event/) (links to FIRST WA)
 
+* [Competition Inspection Checklist (v1)](https://firstfrc.blob.core.windows.net/frc2023/Manual/2023-inspection-checklist.pdf) (links to FIRST website)
+
+Our [docs folder](/docs/) also contains various images and files beyond what is on the README.md, and is periodically updated without announcement.
+
 ![Tentative Meeting Schedule, normally T 3-6, R 3-6, S 10-4](/docs/tentative_robotics_schedule.png)
 
 ### Typical Gantt Chart:

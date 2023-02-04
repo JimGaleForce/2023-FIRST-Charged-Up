@@ -2,7 +2,11 @@ package frc.robot.auto;
 
 public interface AutoRoutine {
 
-    public void init();
+    default public void init() {
+        System.out.println("Warning! This class does not override the default init()!");
+    };
     
-    public void periodic();
+    default public void periodic() {
+        System.out.println("Warning! This class does not override the default periodic()!");
+    };
 }

@@ -12,7 +12,7 @@ public class DriveDistanceCmd extends CommandBase {
 
   // Constants
   private static final double WHEEL_DIAMETER = 6.0; // inches
-  private static final double RPM = 1000.0; // assuming 100% power is 1000 RPM
+  private static final double RPM = 100.0; // assuming 100% power is 1000 RPM
   private static final double CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI; // inches
   private static final double INCHES_PER_MINUTE = RPM * CIRCUMFERENCE; // inches per minute
   
@@ -48,7 +48,7 @@ public class DriveDistanceCmd extends CommandBase {
   /**
    * Timeout of the command in milliseconds.
    */
-  int timeoutInMilliseconds;
+  int timeoutInMilliseconds = 5000;
   /**
   * Represents the ramp-up percent of the motor
   */
@@ -201,7 +201,7 @@ public class DriveDistanceCmd extends CommandBase {
    */
   @Override
   public void initialize() {
-    c_Drive.arcadeDrive(this.topSpeed, 0);
+    c_Drive.arcadeDrive(0, 0);
     this.startTime = System.currentTimeMillis();
   }
 
@@ -215,10 +215,14 @@ public class DriveDistanceCmd extends CommandBase {
   @Override
   public void execute() {
     long currentTime = System.currentTimeMillis();
-    this.isDone = currentTime >= this.startTime + this.milliseconds || currentTime > this.timeoutInMilliseconds;
+    this.isDone = currentTime >= this.startTime + this.milliseconds || currentTime > this.startTime + this.timeoutInMilliseconds;
     if (!this.isDone) {
       double currentSpeed = getSpeedFrom(currentTime);
       c_Drive.arcadeDrive(currentSpeed, 0);
+    } 
+    else 
+    {
+      c_Drive.arcadeDrive(0,0);
     }
   }
 
