@@ -20,8 +20,7 @@ public class CustomDrive extends RobotDriveBase{
         if (Math.abs(lat) < k_defaultDeadband)
             lat = 0;
         if (Math.abs(rot) < k_defaultDeadband)
-            rot = 0;
-        
+ 
         lat = Math.copySign(lat*lat, lat);
         rot = Math.copySign(rot*rot, rot);
 

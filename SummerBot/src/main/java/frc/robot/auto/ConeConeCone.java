@@ -42,12 +42,3 @@ public class ConeConeCone implements AutoRoutine {
 
 
 
-
-
-
-
-
-
-
-
-//Staff Wifi Password: knoll2&mends
