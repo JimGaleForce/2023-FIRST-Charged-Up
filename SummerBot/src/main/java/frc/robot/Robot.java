@@ -1,119 +1,60 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.ADIS16470_IMU;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import frc.robot.auto.*;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
-import frc.robot.auto.AutoRoutine;
-import frc.robot.auto.ConeConeCone;
-import frc.robot.auto.BradyAuto;
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Counter;
-import edu.wpi.first.wpilibj.ADIS16448_IMU;
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.CvSink;
-import edu.wpi.first.cscore.UsbCamera;
-import edu.wpi.first.cscore.CvSource;
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
 
 public class Robot extends TimedRobot {
-  VictorSPX m_frontLeft, m_rearLeft;
-  PWMVictorSPX m_frontRight, m_rearRight;
-  MotorControllerGroup m_right;
-  CustomDrive m_drive;
-  Joystick m_controller;
+    Chassis chassis;
+    Controller controller;
+    Lidar lidar;
+    Limelight limelight;
+    ADIS16470_IMU gyro;
 
-  Counter m_counter;
+    AutoRoutine autoRoutine;
+    SendableChooser<AutoRoutine> chooser;
 
+    @Override
+    public void robotInit() {
+        chassis = new Chassis();
+        controller = new Controller();
+        lidar = new Lidar();
+        limelight = new Limelight();
+        
+        gyro = new ADIS16470_IMU();
+        gyro.calibrate();
 
-  AutoRoutine m_auto;
+        chooser = new SendableChooser<AutoRoutine>();
+        chooser.setDefaultOption("Aiden 1", new aidato(chassis));
+        chooser.addOption("Brady 1", new BradyAuto(chassis.m_drive));
+        chooser.addOption("Kellen 1", new ConeConeCone(chassis.m_drive));
+        chooser.addOption("Brady/Kellen 1", new customAuto(chassis.m_drive));
+        chooser.addOption("Lehua 1", new Loneauto(chassis.m_drive));
+        chooser.addOption("Lehua 2", new Ltwoauto(chassis.m_drive));
+        chooser.addOption("Chris 1", new DemoAuto(chassis, limelight, gyro));
+    }
 
-  // CameraServer m_camera;
-  Thread m_visionThread;
+    @Override
+    public void autonomousInit() {
+        autoRoutine = chooser.getSelected();
+        autoRoutine.init();
+    }
 
-  //BradyAuto m_auto;
+    @Override
+    public void autonomousPeriodic() {
+        autoRoutine.periodic();
+    }
 
-  @Override
-  public void robotInit() {
-    m_frontLeft = new VictorSPX(0);
-    m_rearLeft = new VictorSPX(1);
-    m_frontRight = new PWMVictorSPX(0);
-    m_rearRight = new PWMVictorSPX(1);
+    @Override
+    public void teleopPeriodic() {
+        chassis.arcadeDrive(controller.getLateralVelocity(), controller.getAngularVelocity());
+        System.out.println(lidar.getDistance());
 
-    m_rearLeft.follow(m_frontLeft);
-    m_right = new MotorControllerGroup(m_frontRight, m_rearRight);
-    m_right.setInverted(true);
-
-
-    m_drive = new CustomDrive(m_frontLeft, m_right);
-    m_controller = new Joystick(0);
-
-    m_counter = new Counter(0);
-    m_counter.setMaxPeriod(1);
-    m_counter.setSemiPeriodMode(true);
-    m_counter.reset();
-
-    // CameraServer.startAutomaticCapture("null", 0);
-    m_visionThread = new Thread(
-      () -> {
-        UsbCamera camera = CameraServer.startAutomaticCapture();
-        camera.setResolution(640, 480);
-        CvSink cvsink = CameraServer.getVideo();
-        CvSource outputstream = CameraServer.putVideo("Science", 640, 480);
-        Mat mat = new Mat();
-
-        while (!Thread.interrupted()) {
-          if (cvsink.grabFrame(mat) == 0) {
-            System.out.println("Stream Error");
-            continue;
-          }
-          
-          // System.out.println(" " + mat.width() + mat.height());
-          // Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400), new Scalar(0, 255, 255), -5);
-          Imgproc.cvtColor(mat, mat, Imgproc.COLOR_BGR2HSV);
-          Imgproc.medianBlur(mat, mat, 5);
-          //Core.inRange(mat, new Scalar(30, 100, 100), new Scalar(80, 200, 200), mat);
-          outputstream.putFrame(mat);
+        if (controller.getConeTrackingButton()) {
+            System.out.println("This feature is not implemented yet!");
         }
-      }
-    );
-    m_visionThread.setDaemon(true);
-    m_visionThread.start();
-
-
-    m_auto = new ConeConeCone (m_drive);
-//>>>>>>> Stashed changes
-  }
-
-  @Override
-  public void autonomousInit() {
-    m_auto.init();
-  }
-
-  @Override
-  public void autonomousPeriodic() {
-    m_auto.periodic();
-  }
-
-  @Override
-  public void teleopPeriodic() {
-    m_drive.arcadeDrive(-m_controller.getRawAxis(1), 0.6*m_controller.getRawAxis(0));
-    
-  // System.out.println(getDistance());
-  // if (getDistance() > 20) {
-  //   m_drive.arcadeDrive(-0.5, 0);
-  // } else {
-  //   m_drive.arcadeDrive(0, 0);
-  // }
-  }
-
-  public double getDistance() {
-    return m_counter.getPeriod() * 100000 / 2.54;
-  }
+    }
 }
+
