@@ -1,6 +1,7 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.drive.RobotDriveBase;
@@ -44,5 +45,9 @@ public class CustomDrive extends RobotDriveBase{
 
     public String getDescription() {
         return "Custom Drive";
+    }
+
+    public void setBrake(boolean brakeMode) {
+        m_left.setNeutralMode(NeutralMode.Brake);
     }
 }

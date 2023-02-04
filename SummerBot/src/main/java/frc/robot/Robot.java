@@ -28,7 +28,7 @@ public class Robot extends TimedRobot {
         gyro.calibrate();
 
         chooser = new SendableChooser<AutoRoutine>();
-        chooser.setDefaultOption("Aiden 1", new aidato(chassis));
+        chooser.setDefaultOption("Aiden 1", new aidato(chassis.m_drive));
         //chooser.addOption("Brady 1", new BradyAuto(chassis.m_drive));
         // chooser.addOption("Kellen 1", new ConeConeCone(chassis.m_drive));
         // chooser.addOption("Brady/Kellen 1", new customAuto(chassis.m_drive));
@@ -54,6 +54,7 @@ public class Robot extends TimedRobot {
     }
 
     @Override
+    
     public void autonomousPeriodic() {
         autoRoutine.periodic();
     }
