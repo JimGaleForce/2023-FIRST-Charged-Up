@@ -19,15 +19,21 @@ public class CustomDrive extends RobotDriveBase{
     public void coast(){
         m_left.setNeutralMode(NeutralMode.Coast);
     }
+
     public void arcadeDrive(double lat, double rot) {
+        arcadeDrive(lat, rot, false);
+    }
+
+    public void arcadeDrive(double lat, double rot, boolean squared) {
         if (Math.abs(lat) < k_defaultDeadband)
             lat = 0;
         if (Math.abs(rot) < k_defaultDeadband)
             rot = 0;
+        if (squared) {
+            lat = Math.copySign(lat*lat, lat);
+            rot = Math.copySign(rot*rot, rot);
+        }
         
-        lat = Math.copySign(lat*lat, lat);
-        rot = Math.copySign(rot*rot, rot);
-
         double leftSpeed = lat + rot;
         double rightSpeed = lat - rot;
         double k_normalization = Math.max(1, Math.max(Math.abs(leftSpeed), Math.abs(rightSpeed)));

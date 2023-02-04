@@ -30,7 +30,7 @@ public class Robot extends TimedRobot {
 
   Counter m_counter;
 
-  AutoRoutine m_auto;
+  SelfBalance m_auto;
 
   // CameraServer m_camera;
   Thread m_visionThread;
@@ -58,8 +58,7 @@ public class Robot extends TimedRobot {
     m_counter.setSemiPeriodMode(true);
     m_counter.reset();
 
-    m_auto = new Something (m_drive);
-
+    m_auto = new SelfBalance(m_drive);
 
     // CameraServer.startAutomaticCapture("null", 0);
 
