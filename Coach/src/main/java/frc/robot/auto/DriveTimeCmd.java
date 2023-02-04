@@ -61,6 +61,7 @@ public class DriveTimeCmd extends CommandBase {
    */
   @Override
   public void initialize() {
+    c_Drive.coast();
     c_Drive.arcadeDrive(this.lat, this.rot);
     this.startTime = System.currentTimeMillis();
   }

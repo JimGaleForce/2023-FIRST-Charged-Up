@@ -3,7 +3,7 @@ import frc.robot.CustomDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 
-public class Loneauto {
+public class Loneauto implements AutoRoutine {
     CustomDrive m_drive;
     int timer;
     Gyro m_gyro;
