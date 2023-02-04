@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.auto.*;
 
 
@@ -34,6 +35,16 @@ public class Robot extends TimedRobot {
         chooser.addOption("Lehua 1", new Loneauto(chassis.m_drive));
         chooser.addOption("Lehua 2", new Ltwoauto(chassis.m_drive));
         chooser.addOption("Chris 1", new DemoAuto(chassis, limelight, gyro));
+
+        SmartDashboard.putNumber("Lateral Speed Factor", Constants.LATERAL_SPEED_FACTOR);
+        SmartDashboard.putNumber("Angular Speed Factor", Constants.ANGULAR_SPEED_FACTOR);
+        SmartDashboard.putNumber("Gyro Angle", gyro.getAngle());
+    }
+
+    @Override
+    public void robotPeriodic() {
+        Constants.ANGULAR_SPEED_FACTOR = SmartDashboard.getNumber("Lateral Speed Factor", 1.0);
+        Constants.LATERAL_SPEED_FACTOR = SmartDashboard.getNumber("Angular Speed Factor", 0.7);
     }
 
     @Override

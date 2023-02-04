@@ -4,10 +4,13 @@ import edu.wpi.first.networktables.*;
 
 public class Limelight {
 
-    NetworkTable table;
+    private NetworkTable table;
 
     public enum Pipeline {
-        CONE, CUBE, DRIVING
+        CONE(0), CUBE(1), DRIVING(2);
+
+        private int value;
+        private Pipeline(int value) { this.value = value; }
     }
 
     public enum LED {
@@ -35,6 +38,10 @@ public class Limelight {
 
     public double getTargetArea() {
         return table.getEntry("ta").getDouble(0);
+    }
+
+    public void setPipeline(Pipeline pipeline) {
+        table.getEntry("pipeline").setNumber(pipeline.value);
     }
 
     public void setLED(LED state) {

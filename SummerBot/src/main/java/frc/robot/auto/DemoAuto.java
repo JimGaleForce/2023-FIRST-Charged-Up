@@ -5,6 +5,11 @@ import frc.robot.Chassis;
 import frc.robot.Limelight;
 import frc.robot.Limelight.*;
 
+/**
+ * Basic autonomous routine that flashes the LEDs every 0.8 seconds
+ * on a 25% duty cycle. This will also make the robot rotate in a
+ * 180 degree path, 0.3 power clockwise and 0.4 counterclockwise.
+ */
 public class DemoAuto implements AutoRoutine {
 
     Chassis chassis;

@@ -4,11 +4,16 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+/**
+ * Ideally, this class would have been combined with CustomDrive,
+ * but in order to emulate WPI's library, which has an ArcadeDrive
+ * that we access, I've kept these two classes separate.
+ */
 public class Chassis {
-    VictorSPX m_frontLeft, m_rearLeft;
-    PWMVictorSPX m_frontRight, m_rearRight;
-    MotorControllerGroup m_right;
-    CustomDrive m_drive;
+    private VictorSPX m_frontLeft, m_rearLeft;
+    private PWMVictorSPX m_frontRight, m_rearRight;
+    private MotorControllerGroup m_right;
+    CustomDrive m_drive; // left public to avoid rewriting all auto routines
 
     public Chassis() {
         m_frontLeft = new VictorSPX(Constants.CAN_FL_MOTOR);
