@@ -30,8 +30,7 @@ public class Robot extends TimedRobot {
 
   Counter m_counter;
 
-  //HybridCone
-  Something m_auto;
+  AutoRoutine m_auto;
 
   // CameraServer m_camera;
   Thread m_visionThread;
@@ -104,7 +103,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    m_drive.arcadeDrive(-m_controller.getRawAxis(1), 0.6*m_controller.getRawAxis(0));
+    m_drive.arcadeDrive(.6*-m_controller.getRawAxis(1), 0.7*m_controller.getZ());
     
   // System.out.println(getDistance());
   // if (getDistance() > 20) {
