@@ -29,11 +29,11 @@ public class Robot extends TimedRobot {
 
         chooser = new SendableChooser<AutoRoutine>();
         chooser.setDefaultOption("Aiden 1", new aidato(chassis));
-        chooser.addOption("Brady 1", new BradyAuto(chassis.m_drive));
-        chooser.addOption("Kellen 1", new ConeConeCone(chassis.m_drive));
-        chooser.addOption("Brady/Kellen 1", new customAuto(chassis.m_drive));
-        chooser.addOption("Lehua 1", new Loneauto(chassis.m_drive));
-        chooser.addOption("Lehua 2", new Ltwoauto(chassis.m_drive));
+        //chooser.addOption("Brady 1", new BradyAuto(chassis.m_drive));
+        // chooser.addOption("Kellen 1", new ConeConeCone(chassis.m_drive));
+        // chooser.addOption("Brady/Kellen 1", new customAuto(chassis.m_drive));
+        // chooser.addOption("Lehua 1", new Loneauto(chassis.m_drive));
+        // chooser.addOption("Lehua 2", new Ltwoauto(chassis.m_drive));
         chooser.addOption("Chris 1", new DemoAuto(chassis, limelight, gyro));
 
         SmartDashboard.putNumber("Lateral Speed Factor", Constants.LATERAL_SPEED_FACTOR);
