@@ -8,7 +8,7 @@ import frc.robot.CustomDrive;
  * class and controls the movement of the robot
  * using the arcadeDrive method of the CustomDrive class.
  */
-public class DriveTimeCmd extends CommandBase {
+public class BrakeCmd extends CommandBase {
 
   /**
    * Object of the CustomDrive class that is used to control the movement of the
@@ -46,7 +46,7 @@ public class DriveTimeCmd extends CommandBase {
    * @param rot          angular velocity of the robot
    * @param milliseconds duration of the command
    */
-  public DriveTimeCmd(CustomDrive c_drive, double lat, double rot, int milliseconds) {
+  public BrakeCmd(CustomDrive c_drive, double lat, double rot, int milliseconds) {
     this.c_Drive = c_drive;
     this.lat = lat;
     this.rot = rot;
@@ -61,7 +61,6 @@ public class DriveTimeCmd extends CommandBase {
    */
   @Override
   public void initialize() {
-    c_Drive.coast();
     c_Drive.arcadeDrive(this.lat, this.rot);
     this.startTime = System.currentTimeMillis();
   }
@@ -78,8 +77,12 @@ public class DriveTimeCmd extends CommandBase {
     this.isDone = System.currentTimeMillis() >= this.startTime + this.milliseconds;
     if (!this.isDone) {
       c_Drive.arcadeDrive(this.lat, this.rot);
-    }
+    }else{
+      c_Drive.Brake();
+    
   }
+  }
+
 
   /**
    * Method that returns true if the command is finished.
