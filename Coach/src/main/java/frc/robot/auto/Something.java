@@ -46,10 +46,10 @@ public class Something implements AutoRoutine {
     Command m_sequentialCommands = new SequentialCommandGroup(
         new SequentialCommandGroup(
             // drive forward at 50% for 1 second
-            //new DriveTimeCmd(this.c_Drive, 0.5, 0, 3000),
+            //new DriveTimeCmd(this.c_Drive, 5, 0, 3000),
             
             // turn 90 degrees, timeout at 4 seconds
-            new Turn0(this.c_Drive, this.c_Gyro, 1, 90, 3000)
+            new Turn0(this.c_Drive, this.c_Gyro, 1, 90, 3000),
 
             // drive forward at 50% for 1 second
             //new DriveTimeCmd(this.c_Drive, 0.5, 0, 1000),
@@ -64,10 +64,10 @@ public class Something implements AutoRoutine {
             //new DriveTimeCmd(this.c_Drive, 0.5, 0, 1000),
 
             // stop
-            //new DriveTimeCmd(this.c_Drive, 0, 0, 0)
+            new DriveTimeCmd(this.c_Drive, 0, 0, 0)
         // new Sequential2(this.c_Drive)
         // new ParallelCommandGroup(
-        // new Parallel1(),
+        // new Parallel1(),`
         // new Parallel2()
         // )
         // ),
@@ -90,13 +90,13 @@ public class Something implements AutoRoutine {
 
     // Run the commands (which executes the periodic on all the current commands).
     CommandScheduler.getInstance().run();
-    if(c_Gyro.getAngle()<0){
-      c_Drive.arcadeDrive(0,10);
-    }
-    if(c_Gyro.getAngle()>0){
-      c_Drive.arcadeDrive(0,-10);
+    // if(c_Gyro.getAngle()<0){
+    //   c_Drive.arcadeDrive(0,10);
+    // }
+    // if(c_Gyro.getAngle()>0){
+    //   c_Drive.arcadeDrive(0,-10);
 
-    }
+    // }
 
     // previous code
     // timer++;
