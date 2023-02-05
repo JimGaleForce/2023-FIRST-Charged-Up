@@ -8,40 +8,33 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
-public class HybridCone implements AutoRoutine {
+public class SelfBalance implements AutoRoutine {
 
   CustomDrive c_Drive;
   int timer;
 
-  ADIS16470_IMU c_Gyro = new ADIS16470_IMU();
+  ADIS16470_IMU c_Gyro;// = new ADIS16470_IMU();
 
-  public HybridCone(CustomDrive c_drive) {
+  public SelfBalance(CustomDrive c_drive, ADIS16470_IMU c_Gyro) {
     this.c_Drive = c_drive;
+    this.c_Gyro = c_Gyro;
   }
 
   public void init() {
     c_Gyro.reset();
     timer = 0;
-
     // Set up commands, in sequential and parallel order to call when auton is
     // initiated.
     Command m_sequentialCommands = new SequentialCommandGroup(
         new SequentialCommandGroup(
-          /* new DriveTimeCmd(this.c_Drive, -0.5,0,100),
-          new DriveTimeCmd(this.c_Drive, 0.7,0,3050),
-          new TurnCmd(this.c_Drive, this.c_Gyro, 30,1500),
-          new DriveTimeCmd(this.c_Drive, 0,0,500),
-          new TurnCmd(this.c_Drive, this.c_Gyro, 145,5000),
-          new DriveTimeCmd(this.c_Drive, 0.7,0,3000),
-          new TurnCmd(this.c_Drive, this.c_Gyro, -86,2000),
-          new DriveTimeCmd(this.c_Drive, 1,0,500),
-          new TurnCmd(this.c_Drive, this.c_Gyro, 86,2000), */
-
-          // testing engaging
-          new DriveTimeCmd(this.c_Drive, 0.6,0,3985),
+       
+          // command-based sucessful enganging 
+          /*new DriveTimeCmd(this.c_Drive, 0.6,0,3985),
           new DriveTimeCmd(this.c_Drive, -0.5,0,350),
           new DriveTimeCmd(this.c_Drive, 0,0,0),
           new BrakeCmd(this.c_Drive, 0,0,0)
+        */ 
+        // new DriveTimeCmd(this.c_Drive, 0.6,0,3750)
         ));
 
     // Cancel any previous commands, in case there was a false start.
@@ -52,7 +45,18 @@ public class HybridCone implements AutoRoutine {
   }
 
   public void periodic() {
-    
+   System.out.println(c_Gyro.getYComplementaryAngle());
+    // gyro-based engaging
+    if (c_Gyro.getYComplementaryAngle() < -5){
+      c_Drive.arcadeDrive(-0.3,0);
+      System.out.println("Tilted backwards");
+     } else if (c_Gyro.getYComplementaryAngle() > 5){
+      c_Drive.arcadeDrive(0.3,0);
+      System.out.println("Tilted forwards");
+     } else{
+      c_Drive.arcadeDrive(0,0);
+      new BrakeCmd(this.c_Drive, 0,0,0);
+    }
     // Run the commands (which executes the periodic on all the current commands).
     CommandScheduler.getInstance().run();
   }
