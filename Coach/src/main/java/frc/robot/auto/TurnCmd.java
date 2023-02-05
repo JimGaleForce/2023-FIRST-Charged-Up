@@ -72,6 +72,7 @@ public class TurnCmd extends CommandBase {
   @Override
   public void execute() {
     System.out.println(this.c_Gyro.getAngle());
+    this.c_Gyro.getYawAxis();
     // called repeatedly while the command is running
     if (this.degrees > 0) {
       this.isDone = -this.c_Gyro.getAngle() >= this.degrees;
