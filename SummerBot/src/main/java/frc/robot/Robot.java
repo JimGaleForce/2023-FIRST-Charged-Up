@@ -28,28 +28,38 @@ public class Robot extends TimedRobot {
         gyro.calibrate();
 
         chooser = new SendableChooser<AutoRoutine>();
-        chooser.setDefaultOption("Aiden 1", new aidato(chassis.m_drive));
+        chooser.setDefaultOption("Aiden 1", new aidato(chassis.m_drive, gyro));
         //chooser.addOption("Brady 1", new BradyAuto(chassis.m_drive));
         // chooser.addOption("Kellen 1", new ConeConeCone(chassis.m_drive));
         // chooser.addOption("Brady/Kellen 1", new customAuto(chassis.m_drive));
         // chooser.addOption("Lehua 1", new Loneauto(chassis.m_drive));
         // chooser.addOption("Lehua 2", new Ltwoauto(chassis.m_drive));
         chooser.addOption("Chris 1", new DemoAuto(chassis, limelight, gyro));
+        SmartDashboard.putData(chooser);
 
         SmartDashboard.putNumber("Lateral Speed Factor", Constants.LATERAL_SPEED_FACTOR);
         SmartDashboard.putNumber("Angular Speed Factor", Constants.ANGULAR_SPEED_FACTOR);
         SmartDashboard.putNumber("Gyro Angle", gyro.getAngle());
+        SmartDashboard.putNumber("Gyro X", gyro.getXComplementaryAngle());
+        SmartDashboard.putNumber("Gyro Y", gyro.getYComplementaryAngle());
     }
 
     @Override
     public void robotPeriodic() {
         Constants.ANGULAR_SPEED_FACTOR = SmartDashboard.getNumber("Lateral Speed Factor", 1.0);
         Constants.LATERAL_SPEED_FACTOR = SmartDashboard.getNumber("Angular Speed Factor", 0.7);
+
+        SmartDashboard.putNumber("Lateral Speed Factor", Constants.LATERAL_SPEED_FACTOR);
+        SmartDashboard.putNumber("Angular Speed Factor", Constants.ANGULAR_SPEED_FACTOR);
+        SmartDashboard.putNumber("Gyro Angle", gyro.getAngle());
+        SmartDashboard.putNumber("Gyro X", gyro.getXComplementaryAngle());
+        SmartDashboard.putNumber("Gyro Y", gyro.getYComplementaryAngle());
     }
 
     @Override
     public void autonomousInit() {
-        autoRoutine = chooser.getSelected();
+        // autoRoutine = chooser.getSelected();
+        autoRoutine = new SelfBalance(chassis.m_drive, gyro);
         autoRoutine.init();
     }
 

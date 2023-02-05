@@ -14,10 +14,11 @@ public class aidato implements AutoRoutine {
     CustomDrive c_Drive;
     int timer;
   
-    ADIS16470_IMU c_Gyro = new ADIS16470_IMU();
+    ADIS16470_IMU c_Gyro;// = new ADIS16470_IMU();
   
-    public aidato(CustomDrive c_drive) {
+    public aidato(CustomDrive c_drive, ADIS16470_IMU c_Gyro) {
       this.c_Drive = c_drive;
+      this.c_Gyro = c_Gyro;
     }
   
     public void init() {

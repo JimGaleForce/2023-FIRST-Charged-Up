@@ -13,10 +13,11 @@ public class SelfBalance implements AutoRoutine {
   CustomDrive c_Drive;
   int timer;
 
-  ADIS16470_IMU c_Gyro = new ADIS16470_IMU();
+  ADIS16470_IMU c_Gyro;// = new ADIS16470_IMU();
 
-  public SelfBalance(CustomDrive c_drive) {
+  public SelfBalance(CustomDrive c_drive, ADIS16470_IMU c_Gyro) {
     this.c_Drive = c_drive;
+    this.c_Gyro = c_Gyro;
   }
 
   public void init() {
@@ -33,6 +34,7 @@ public class SelfBalance implements AutoRoutine {
           new DriveTimeCmd(this.c_Drive, 0,0,0),
           new BrakeCmd(this.c_Drive, 0,0,0)
         */ 
+        // new DriveTimeCmd(this.c_Drive, 0.6,0,3750)
         ));
 
     // Cancel any previous commands, in case there was a false start.
@@ -43,12 +45,14 @@ public class SelfBalance implements AutoRoutine {
   }
 
   public void periodic() {
-   System.out.println(c_Gyro.getXComplementaryAngle());
+   System.out.println(c_Gyro.getYComplementaryAngle());
     // gyro-based engaging
-    if (c_Gyro.getXComplementaryAngle() > 5){
-      c_Drive.arcadeDrive(-0.5,0);
-     } else if (c_Gyro.getXComplementaryAngle() < -5){
-      c_Drive.arcadeDrive(0.5,0);
+    if (c_Gyro.getYComplementaryAngle() < -5){
+      c_Drive.arcadeDrive(-0.3,0);
+      System.out.println("Tilted backwards");
+     } else if (c_Gyro.getYComplementaryAngle() > 5){
+      c_Drive.arcadeDrive(0.3,0);
+      System.out.println("Tilted forwards");
      } else{
       c_Drive.arcadeDrive(0,0);
       new BrakeCmd(this.c_Drive, 0,0,0);
