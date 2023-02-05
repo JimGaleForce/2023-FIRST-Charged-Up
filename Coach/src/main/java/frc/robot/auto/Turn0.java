@@ -65,7 +65,7 @@ public class Turn0 extends CommandBase {
   public void initialize() {
     // called when the command is started
     c_Gyro.reset();
-    c_Drive.arcadeDrive(0, this.rot);
+    c_Drive.arcadeDrive(0, 0);
     this.startTime = System.currentTimeMillis();
     
 
@@ -100,17 +100,19 @@ public class Turn0 extends CommandBase {
     } else {
       this.isDone = -this.c_Gyro.getAngle() <= this.degrees;
     }
-    if(x>-5 && x<5 && area<69){
-      c_Drive.arcadeDrive(this.distance,0);
-      //c_Drive.arcadeDrive(this.distance,0);
-    }
-    else if(x>-5 && x<5 && area>=69){
-      c_Drive.arcadeDrive(0,0);
-    }
 
     this.isDone = this.isDone || System.currentTimeMillis() >= this.startTime + this.milliseconds;
     if (!this.isDone) {
-      c_Drive.arcadeDrive(0, this.rot*.5);
+      c_Drive.arcadeDrive(0, this.rot*.2);
+      System.out.println("r="+this.rot);
+    }
+
+    if(x>-5 && x<5 && area<69){
+      c_Drive.arcadeDrive(this.distance,0);
+      System.out.println("d="+this.distance);
+      }
+    else if(x>-5 && x<5 && area>=69){
+      //c_Drive.arcadeDrive(2,0);
     }
     
   }
