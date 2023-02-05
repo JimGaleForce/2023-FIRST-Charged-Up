@@ -18,12 +18,20 @@ public class CustomDrive extends RobotDriveBase{
     }
 
     public void arcadeDrive(double lat, double rot) {
+        arcadeDrive(lat, rot, false);
+    }
+
+    public void arcadeDrive(double lat, double rot, boolean squared) {
         if (Math.abs(lat) < k_defaultDeadband)
             lat = 0;
         if (Math.abs(rot) < k_defaultDeadband)
- 
-        lat = Math.copySign(lat*lat, lat);
-        rot = Math.copySign(rot*rot, rot);
+        
+        if (squared) {
+            lat = Math.copySign(lat*lat, lat);
+            // lat = 0.5*(lat + Math.copySign(lat*lat, lat));
+            rot = Math.copySign(rot*rot, rot);
+            // rot = 0.5*(rot + Math.copySign(rot*rot, rot));
+        }
 
         double leftSpeed = lat + rot;
         double rightSpeed = lat - rot;
