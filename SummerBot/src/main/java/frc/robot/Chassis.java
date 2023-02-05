@@ -32,4 +32,8 @@ public class Chassis {
     public void arcadeDrive(double lat, double rot) {
         m_drive.arcadeDrive(lat, rot);
     }
+
+    public void arcadeDrive(double lat, double rot, boolean squared) {
+        m_drive.arcadeDrive(lat, rot, squared);
+    }
 }
