@@ -36,4 +36,8 @@ public class Chassis {
     public void arcadeDrive(double lat, double rot, boolean squared) {
         m_drive.arcadeDrive(lat, rot, squared);
     }
+
+    public void setBrake(boolean brakeMode) {
+        m_drive.setBrake(brakeMode);
+    }
 }

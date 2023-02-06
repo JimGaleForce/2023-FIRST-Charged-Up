@@ -1,16 +1,16 @@
 package frc.robot.auto;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
-import frc.robot.CustomDrive;
+import frc.robot.Chassis;
 
 public class customAuto implements AutoRoutine {
 
-    CustomDrive m_drive;
+    Chassis m_drive;
     int timer;
     ADIS16470_IMU newGyro;
     
-    public customAuto(CustomDrive drive) {
+    public customAuto(Chassis drive, ADIS16470_IMU gyro) {
         this.m_drive = drive;
-        newGyro = new ADIS16470_IMU();
+        newGyro = gyro;
     }
 
     public void init() {

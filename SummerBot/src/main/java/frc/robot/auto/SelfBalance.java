@@ -1,21 +1,20 @@
 package frc.robot.auto;
 
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.CustomDrive;
-
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Chassis;
+import frc.robot.auto.commands.BrakeCmd;
 
 public class SelfBalance implements AutoRoutine {
 
-  CustomDrive c_Drive;
+  Chassis c_Drive;
   int timer;
 
-  ADIS16470_IMU c_Gyro;// = new ADIS16470_IMU();
+  ADIS16470_IMU c_Gyro;
 
-  public SelfBalance(CustomDrive c_drive, ADIS16470_IMU c_Gyro) {
+  public SelfBalance(Chassis c_drive, ADIS16470_IMU c_Gyro) {
     this.c_Drive = c_drive;
     this.c_Gyro = c_Gyro;
   }

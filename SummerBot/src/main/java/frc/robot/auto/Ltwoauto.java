@@ -1,20 +1,22 @@
 package frc.robot.auto;
-import frc.robot.CustomDrive;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
+import frc.robot.Chassis;
+import edu.wpi.first.wpilibj.ADIS16470_IMU;
 
-public class Ltwoauto {
-    CustomDrive m_drive;
+public class Ltwoauto implements AutoRoutine {
+    Chassis m_drive;
     int timer;
-    Gyro m_gyro;
+    ADIS16470_IMU m_gyro;
 
-
-    public Ltwoauto(CustomDrive drive){
+    public Ltwoauto(Chassis drive, ADIS16470_IMU gyro) {
         m_drive = drive;
+        m_gyro = gyro;
     }
-    public void init(){
+
+    public void init() {
         timer = 0;
     }
-    public void periodic(){
+
+    public void periodic() {
      //   timer++;
         if(timer < 150){
             m_drive.arcadeDrive(1,0);

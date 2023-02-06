@@ -1,6 +1,6 @@
 package frc.robot.auto;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
-import frc.robot.CustomDrive;
+import frc.robot.Chassis;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -8,23 +8,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class BradyAuto implements AutoRoutine {
-        ADIS16470_IMU gyro = new ADIS16470_IMU();
-        CustomDrive m_drive;
+        ADIS16470_IMU gyro;
+        Chassis m_drive;
         int timer;
 
         public void init() {
             gyro.reset();
             timer = 0;
         }
-        
-
-        
-        public void IntGyro(){
-
-        }
     
-        public BradyAuto(CustomDrive drive) {
+        public BradyAuto(Chassis drive, ADIS16470_IMU gyro) {
             this.m_drive = drive;
+            this.gyro = gyro;
         }
     
         public void periodic() {

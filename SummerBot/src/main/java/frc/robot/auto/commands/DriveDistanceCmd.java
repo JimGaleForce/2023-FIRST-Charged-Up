@@ -1,12 +1,12 @@
-package frc.robot.auto;
+package frc.robot.auto.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.CustomDrive;
+import frc.robot.Chassis;
 
 /**
  * Forward/Backward (straight) drive Command class that extends the CommandBase
  * class and controls the movement of the robot
- * using the arcadeDrive method of the CustomDrive class.
+ * using the arcadeDrive method of the Chassis class.
  */
 public class DriveDistanceCmd extends CommandBase {
 
@@ -18,10 +18,10 @@ public class DriveDistanceCmd extends CommandBase {
   private static final double INCHES_PER_MINUTE = RPM * CIRCUMFERENCE; // inches per minute
   
   /**
-   * Object of the CustomDrive class that is used to control themovement of the
+   * Object of the Chassis class that is used to control themovement of the
    * robot.
    */
-  CustomDrive c_Drive;
+  Chassis c_Drive;
   /**
    * Time in milliseconds when the command is started.
    */
@@ -76,17 +76,17 @@ public class DriveDistanceCmd extends CommandBase {
   double timeConstantSpeed;
 
   /**
-  * Constructor that initializes the object of the CustomDrive class, the top speed, the distance, and the timeout in milliseconds.
+  * Constructor that initializes the object of the Chassis class, the top speed, the distance, and the timeout in milliseconds.
   * The duration of the command is calculated by converting the distance to milliseconds using the provided top speed.
   * This constructor has no ramp up / ramp down - this drives in a square wave.
   *
-  * @param c_drive object of the CustomDrive class
+  * @param c_drive object of the Chassis class
   * @param topSpeed top speed of the robot (1 = 100%)
   * @param feet distance in feet
   * @param inches distance in inches
   * @param timeoutInMilliseconds timeout in milliseconds
   */
-  public DriveDistanceCmd(CustomDrive c_drive, double topSpeed, double feet, double inches, int timeoutInMilliseconds) {
+  public DriveDistanceCmd(Chassis c_drive, double topSpeed, double feet, double inches, int timeoutInMilliseconds) {
     this.c_Drive = c_drive;
     this.topSpeed = topSpeed;
     this.feet = feet;
@@ -96,18 +96,18 @@ public class DriveDistanceCmd extends CommandBase {
   }
 
   /**
-  * Constructor that initializes the object of the CustomDrive class, the top speed, the distance, the timeout in milliseconds, and the ramp up and down percentages.
+  * Constructor that initializes the object of the Chassis class, the top speed, the distance, the timeout in milliseconds, and the ramp up and down percentages.
   * The duration of the command is calculated by converting the distance to milliseconds using the provided top speed and ramp up and down percentages.
   * This constructor drives with a ramp up and ramp down percentage that is identical.
   *
-  * @param c_drive object of the CustomDrive class
+  * @param c_drive object of the Chassis class
   * @param topSpeed top speed of the robot (1 = 100%)
   * @param feet distance in feet
   * @param inches distance in inches
   * @param timeoutInMilliseconds timeout in milliseconds
   * @param rampUpDownPercent ramp up and down percentage (0.25 = 25%)
   */
-  public DriveDistanceCmd(CustomDrive c_drive, double topSpeed, double feet, double inches, int timeoutInMilliseconds, double rampUpDownPercent) {
+  public DriveDistanceCmd(Chassis c_drive, double topSpeed, double feet, double inches, int timeoutInMilliseconds, double rampUpDownPercent) {
     this(c_drive, topSpeed, feet, inches, timeoutInMilliseconds);
     this.rampUpPercent = rampUpDownPercent;
     this.rampDownPercent = rampUpDownPercent;
@@ -115,11 +115,11 @@ public class DriveDistanceCmd extends CommandBase {
   }
 
   /**
-  * Constructor that initializes the object of the CustomDrive class, the top speed, the distance, the timeout in milliseconds, and the ramp up and ramp down percentages.
+  * Constructor that initializes the object of the Chassis class, the top speed, the distance, the timeout in milliseconds, and the ramp up and ramp down percentages.
   * The duration of the command is calculated by converting the distance to milliseconds using the provided top speed and ramp up and down percentages.
   * This constructor drives with a ramp up and ramp down percentage independently.
   *
-  * @param c_drive object of the CustomDrive class
+  * @param c_drive object of the Chassis class
   * @param topSpeed top speed of the robot (1 = 100%)
   * @param feet distance in feet
   * @param inches distance in inches
@@ -127,7 +127,7 @@ public class DriveDistanceCmd extends CommandBase {
   * @param rampUpPercent ramp up percentage (0.25 = 25%)
   * @param rampDownPercent ramp down percentage (0.25 = 25%)
   */
-  public DriveDistanceCmd(CustomDrive c_drive, double topSpeed, double feet, double inches, int timeoutInMilliseconds, double rampUpPercent, double rampDownPercent) {
+  public DriveDistanceCmd(Chassis c_drive, double topSpeed, double feet, double inches, int timeoutInMilliseconds, double rampUpPercent, double rampDownPercent) {
     this(c_drive, topSpeed, feet, inches, timeoutInMilliseconds);
     this.rampUpPercent = rampUpPercent;
     this.rampDownPercent = rampDownPercent;
@@ -197,7 +197,7 @@ public class DriveDistanceCmd extends CommandBase {
   /**
    * Method that is called when the command is started. It sets the arcadeDrive
    * method of the
-   * CustomDrive class with the given linear and angular velocity, and sets the
+   * Chassis class with the given linear and angular velocity, and sets the
    * start time.
    */
   @Override
@@ -211,7 +211,7 @@ public class DriveDistanceCmd extends CommandBase {
    * the command
    * has reached the specified duration and if not, it sets the arcadeDrive method
    * of the
-   * CustomDrive class with the given linear and angular velocity.
+   * Chassis class with the given linear and angular velocity.
    */
   @Override
   public void execute() {

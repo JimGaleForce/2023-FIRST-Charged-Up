@@ -2,21 +2,22 @@ package frc.robot.auto;
 
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.CustomDrive;
-
+import frc.robot.Chassis;
+import frc.robot.auto.commands.BrakeCmd;
+import frc.robot.auto.commands.DriveTimeCmd;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class HybridCone implements AutoRoutine {
 
-  CustomDrive c_Drive;
+  Chassis c_Drive;
   int timer;
 
-  ADIS16470_IMU c_Gyro = new ADIS16470_IMU();
+  ADIS16470_IMU c_Gyro;
 
-  public HybridCone(CustomDrive c_drive) {
+  public HybridCone(Chassis c_drive, ADIS16470_IMU c_gyro) {
     this.c_Drive = c_drive;
+    this.c_Gyro = c_gyro;
   }
 
   public void init() {

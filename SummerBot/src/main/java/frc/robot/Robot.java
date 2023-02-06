@@ -28,13 +28,14 @@ public class Robot extends TimedRobot {
         gyro.calibrate();
 
         chooser = new SendableChooser<AutoRoutine>();
-        chooser.setDefaultOption("Aiden 1", new aidato(chassis.m_drive, gyro));
-        //chooser.addOption("Brady 1", new BradyAuto(chassis.m_drive));
-        // chooser.addOption("Kellen 1", new ConeConeCone(chassis.m_drive));
-        // chooser.addOption("Brady/Kellen 1", new customAuto(chassis.m_drive));
-        // chooser.addOption("Lehua 1", new Loneauto(chassis.m_drive));
-        // chooser.addOption("Lehua 2", new Ltwoauto(chassis.m_drive));
+        chooser.setDefaultOption("Aiden 1", new aidato(chassis, gyro));
+        chooser.addOption("Brady 1", new BradyAuto(chassis, gyro));
+        chooser.addOption("Kellen 1", new ConeConeCone(chassis, gyro));
+        chooser.addOption("Brady/Kellen 1", new customAuto(chassis, gyro));
+        chooser.addOption("Lehua 1", new Loneauto(chassis, gyro));
+        chooser.addOption("Lehua 2", new Ltwoauto(chassis, gyro));
         chooser.addOption("Chris 1", new DemoAuto(chassis, limelight, gyro));
+        chooser.addOption("Lehua 3", new SelfBalance(chassis, gyro));
         SmartDashboard.putData(chooser);
 
         SmartDashboard.putNumber("Lateral Speed Factor", Constants.LATERAL_SPEED_FACTOR);
@@ -42,6 +43,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("Gyro Angle", gyro.getAngle());
         SmartDashboard.putNumber("Gyro X", gyro.getXComplementaryAngle());
         SmartDashboard.putNumber("Gyro Y", gyro.getYComplementaryAngle());
+        SmartDashboard.putNumber("LIDAR Distance", lidar.getDistance());
     }
 
     @Override
@@ -49,33 +51,45 @@ public class Robot extends TimedRobot {
         Constants.ANGULAR_SPEED_FACTOR = SmartDashboard.getNumber("Lateral Speed Factor", 1.0);
         Constants.LATERAL_SPEED_FACTOR = SmartDashboard.getNumber("Angular Speed Factor", 0.7);
 
-        SmartDashboard.putNumber("Lateral Speed Factor", Constants.LATERAL_SPEED_FACTOR);
-        SmartDashboard.putNumber("Angular Speed Factor", Constants.ANGULAR_SPEED_FACTOR);
         SmartDashboard.putNumber("Gyro Angle", gyro.getAngle());
         SmartDashboard.putNumber("Gyro X", gyro.getXComplementaryAngle());
         SmartDashboard.putNumber("Gyro Y", gyro.getYComplementaryAngle());
+        SmartDashboard.putNumber("LIDAR Distance", lidar.getDistance());
     }
 
     @Override
     public void autonomousInit() {
-        // autoRoutine = chooser.getSelected();
-        autoRoutine = new SelfBalance(chassis.m_drive, gyro);
+        autoRoutine = chooser.getSelected();
+        System.out.println(">>> Running autonomous: " + autoRoutine.getClass().getName());
+        autoRoutine = new SelfBalance(chassis, gyro);
         autoRoutine.init();
     }
 
     @Override
-    
     public void autonomousPeriodic() {
         autoRoutine.periodic();
     }
 
     @Override
+    public void autonomousExit() {
+        autoRoutine.exit();
+        autoRoutine = null;
+    }
+
+    @Override
     public void teleopPeriodic() {
         chassis.arcadeDrive(controller.getLateralVelocity(), controller.getAngularVelocity());
-        System.out.println(lidar.getDistance());
 
         if (controller.getConeTrackingButton()) {
             System.out.println("This feature is not implemented yet!");
+        }
+    }
+
+    @Override
+    public void disabledInit() {
+        if (autoRoutine != null) {
+            autoRoutine.exit();
+            autoRoutine = null;
         }
     }
 }

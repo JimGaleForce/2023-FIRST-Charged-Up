@@ -1,15 +1,16 @@
 package frc.robot.auto;
-import frc.robot.CustomDrive;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
+import frc.robot.Chassis;
+import edu.wpi.first.wpilibj.ADIS16470_IMU;
 
 
-public class Loneauto {
-    CustomDrive m_drive;
+public class Loneauto implements AutoRoutine {
+    Chassis m_drive;
     int timer;
-    Gyro m_gyro;
+    ADIS16470_IMU m_gyro;
 
-    public Loneauto(CustomDrive drive){
+    public Loneauto(Chassis drive, ADIS16470_IMU gyro){
         m_drive = drive;
+        m_gyro = gyro;
     }
     public void init(){
         timer = 0;

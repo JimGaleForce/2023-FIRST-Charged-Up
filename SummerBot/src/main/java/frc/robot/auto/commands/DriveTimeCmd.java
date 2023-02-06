@@ -1,20 +1,20 @@
-package frc.robot.auto;
+package frc.robot.auto.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.CustomDrive;
+import frc.robot.Chassis;
 
 /**
  * Forward/Backward (straight) drive Command class that extends the CommandBase
  * class and controls the movement of the robot
- * using the arcadeDrive method of the CustomDrive class.
+ * using the arcadeDrive method of the Chassis class.
  */
 public class DriveTimeCmd extends CommandBase {
 
   /**
-   * Object of the CustomDrive class that is used to control the movement of the
+   * Object of the Chassis class that is used to control the movement of the
    * robot.
    */
-  CustomDrive c_Drive;
+  Chassis c_Drive;
   /**
    * Time in milliseconds when the command is started.
    */
@@ -37,16 +37,16 @@ public class DriveTimeCmd extends CommandBase {
   int milliseconds;
 
   /**
-   * Constructor that initializes the object of the CustomDrive class, the linear
+   * Constructor that initializes the object of the Chassis class, the linear
    * and angular
    * velocity of the robot, and the duration of the command.
    * 
-   * @param c_drive      object of the CustomDrive class
+   * @param c_drive      object of the Chassis class
    * @param lat          linear velocity of the robot
    * @param rot          angular velocity of the robot
    * @param milliseconds duration of the command
    */
-  public DriveTimeCmd(CustomDrive c_drive, double lat, double rot, int milliseconds) {
+  public DriveTimeCmd(Chassis c_drive, double lat, double rot, int milliseconds) {
     this.c_Drive = c_drive;
     this.lat = lat;
     this.rot = rot;
@@ -56,7 +56,7 @@ public class DriveTimeCmd extends CommandBase {
   /**
    * Method that is called when the command is started. It sets the arcadeDrive
    * method of the
-   * CustomDrive class with the given linear and angular velocity, and sets the
+   * Chassis class with the given linear and angular velocity, and sets the
    * start time.
    */
   @Override
@@ -71,7 +71,7 @@ public class DriveTimeCmd extends CommandBase {
    * the command
    * has reached the specified duration and if not, it sets the arcadeDrive method
    * of the
-   * CustomDrive class with the given linear and angular velocity.
+   * Chassis class with the given linear and angular velocity.
    */
   @Override
   public void execute() {
