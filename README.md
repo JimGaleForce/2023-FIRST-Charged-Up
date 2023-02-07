@@ -12,6 +12,8 @@
 - [District Championship - Eastern Washington University (W 4/5 to S 4/8)](https://firstwa.org/first-robotics-competition/game-and-season/pnw-district-championship-frc-event/) (links to FIRST WA)
 
 * [Competition Inspection Checklist (v1)](https://firstfrc.blob.core.windows.net/frc2023/Manual/2023-inspection-checklist.pdf) (links to FIRST website)
+* [Basic Robot Motion Profile](https://www.desmos.com/calculator/giypnllm5k) (links to Desmos)
+* [Written Driver Exam Study Guide](/docs/driver_test_study_guide.md)
 
 Our [docs folder](/docs/) also contains various images and files beyond what is on the README.md, and is periodically updated without announcement.
 
