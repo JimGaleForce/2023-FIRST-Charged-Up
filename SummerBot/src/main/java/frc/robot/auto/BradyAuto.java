@@ -2,9 +2,6 @@ package frc.robot.auto;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import frc.robot.Chassis;
 import frc.robot.Limelight;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -27,19 +24,15 @@ public class BradyAuto implements AutoRoutine {
     
         public void periodic() {
             timer++;
-           // tv Whether the limelight has any valid targets (0 or 1)
-           //tx	Horizontal Offset From Crosshair To Target (-27 degrees to 27 degrees)
-           //ty	Vertical Offset From Crosshair To Target (-20.5 degrees to 20.5 degrees)
-           //ta	Target Area (0% of image to 100% of image)
+           // tv    Whether the limelight has any valid targets (0 or 1)
+           // tx	Horizontal Offset From Crosshair To Target (-27 degrees to 27 degrees)
+           // ty	Vertical Offset From Crosshair To Target (-20.5 degrees to 20.5 degrees)
+           // ta	Target Area (0% of image to 100% of image) (a number from 0 to 100, not 0 to 1)
 
             double x = limelight.getTargetX();
             double y = limelight.getTargetY();
             double area = limelight.getTargetArea();
-
-
-            SmartDashboard.putNumber("LimelightX", x);
-            SmartDashboard.putNumber("LimelightY", y);
-            SmartDashboard.putNumber("LimelightArea", area);
+            boolean tv = limelight.hasValidTarget();
 
             // if (y>7){
             //     m_drive.arcadeDrive(4,0);
@@ -66,8 +59,11 @@ public class BradyAuto implements AutoRoutine {
             //      m_drive.arcadeDrive(0, 0);
             //  }
 
-            if (area < 0.1) {
-                m_drive.arcadeDrive(0.3, 0);
+            if (limelight.hasValidTarget()) {
+                if (area < 10)
+                    m_drive.arcadeDrive(0.3, 0);
+            } else {
+                m_drive.arcadeDrive(0,0);
             }
         }
 }

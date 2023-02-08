@@ -40,10 +40,18 @@ public class Robot extends TimedRobot {
 
         SmartDashboard.putNumber("Lateral Speed Factor", Constants.LATERAL_SPEED_FACTOR);
         SmartDashboard.putNumber("Angular Speed Factor", Constants.ANGULAR_SPEED_FACTOR);
+        updateValues();
+    }
+
+    /** To be called in every periodic method, and will update SmartDashboard. */
+    public void updateValues() {
         SmartDashboard.putNumber("Gyro Angle", gyro.getAngle());
         SmartDashboard.putNumber("Gyro X", gyro.getXComplementaryAngle());
         SmartDashboard.putNumber("Gyro Y", gyro.getYComplementaryAngle());
         SmartDashboard.putNumber("LIDAR Distance", lidar.getDistance());
+        SmartDashboard.putNumber("Limelight dX", limelight.getTargetX());
+        SmartDashboard.putNumber("Limelight dY", limelight.getTargetY());
+        SmartDashboard.putNumber("Limelight Target Area", limelight.getTargetArea());
     }
 
     @Override
@@ -51,17 +59,13 @@ public class Robot extends TimedRobot {
         Constants.ANGULAR_SPEED_FACTOR = SmartDashboard.getNumber("Lateral Speed Factor", 1.0);
         Constants.LATERAL_SPEED_FACTOR = SmartDashboard.getNumber("Angular Speed Factor", 0.7);
 
-        SmartDashboard.putNumber("Gyro Angle", gyro.getAngle());
-        SmartDashboard.putNumber("Gyro X", gyro.getXComplementaryAngle());
-        SmartDashboard.putNumber("Gyro Y", gyro.getYComplementaryAngle());
-        SmartDashboard.putNumber("LIDAR Distance", lidar.getDistance());
+        updateValues();
     }
 
     @Override
     public void autonomousInit() {
-        autoRoutine = new BradyAuto(chassis, gyro, limelight);//chooser.getSelected();
-        System.out.println(">>> Running autonomous: " + autoRoutine.getClass().getName());
-        // autoRoutine = new SelfBalance(chassis, gyro);
+        autoRoutine = chooser.getSelected();
+        System.out.println("\n\n\n>>> Running autonomous: " + autoRoutine.getClass().getName() + "\n\n\n");
         autoRoutine.init();
     }
 
@@ -73,6 +77,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousExit() {
         autoRoutine.exit();
+        System.out.println("\n\n\n>>> Exiting autonomous: " + autoRoutine.getClass().getName() + "\n\n\n");
         autoRoutine = null;
     }
 
@@ -91,6 +96,11 @@ public class Robot extends TimedRobot {
             autoRoutine.exit();
             autoRoutine = null;
         }
+    }
+
+    @Override
+    public void disabledPeriodic() {
+        updateValues();
     }
 }
 

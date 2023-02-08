@@ -1,7 +1,5 @@
 package frc.robot.auto.commands;
 
-import com.fasterxml.jackson.databind.introspect.TypeResolutionContext.Basic;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Chassis;
 
@@ -39,4 +37,8 @@ public class BasicDistanceCmd extends CommandBase {
         return (timer > distanceInches*kConversion);
     }
     
+    @Override
+    public void end(boolean interrupted) {
+        m_chassis.arcadeDrive(0, 0);
+    }
 }
