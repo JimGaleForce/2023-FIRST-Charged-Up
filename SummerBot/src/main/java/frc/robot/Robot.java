@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
 
         chooser = new SendableChooser<AutoRoutine>();
         chooser.setDefaultOption("Aiden 1", new aidato(chassis, gyro));
-        chooser.addOption("Brady 1", new BradyAuto(chassis, gyro));
+        chooser.addOption("Brady 1", new BradyAuto(chassis, gyro, limelight));
         chooser.addOption("Kellen 1", new ConeConeCone(chassis, gyro));
         chooser.addOption("Brady/Kellen 1", new customAuto(chassis, gyro));
         chooser.addOption("Lehua 1", new Loneauto(chassis, gyro));
@@ -59,9 +59,9 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-        autoRoutine = chooser.getSelected();
+        autoRoutine = new BradyAuto(chassis, gyro, limelight);//chooser.getSelected();
         System.out.println(">>> Running autonomous: " + autoRoutine.getClass().getName());
-        autoRoutine = new SelfBalance(chassis, gyro);
+        // autoRoutine = new SelfBalance(chassis, gyro);
         autoRoutine.init();
     }
 
