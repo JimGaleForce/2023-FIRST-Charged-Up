@@ -21,4 +21,4 @@ Key areas of study:
 - Rules regarding robots (Sec 7.1 - 7.4)
 - Rules regarding humans (Sec 8.1 - 8.5)
 
-You will not be asked to recall definitions or provide specific dimensions. Some questions require calculation. Do not second-guess yourself.
+You will not be asked to provide definitions or specific dimensions, but you will need to have a basic understanding of them. Some questions require calculation. Do not second-guess yourself.
